@@ -130,7 +130,7 @@ interface Hello {
 }
 
 const sayHello: Hello = (name, age) => {
-    console.log(` Hello ${name}, tu as ${age} ans`);
+    // console.log(` Hello ${name}, tu as ${age} ans`);
 }
 
 const bestFriend: Hello = name=>name;
@@ -140,4 +140,62 @@ const bestFriend: Hello = name=>name;
 // }
 
 sayHello('Yves', 29);
-console.log(`L'ami de Jean s'apelle ${bestFriend("Luc")}`);
+// console.log(`L'ami de Jean s'apelle ${bestFriend("Luc ")}`);
+
+interface Repertory extends Array<number> {
+    [index:number]:number;
+}
+
+const days: Repertory = [1,2,3,4,5];
+
+// console.log(days);
+
+days.push(7);
+
+// console.log(days);
+
+// Pour rendre obligatoire une fonction dans une interface
+// Mettre la fonction entre {}
+// => maFonction: {(param1:string):void }
+// ////////////////////////// Finalement Ca marche pas attention
+
+interface Object {
+    [index:string]:any;
+    Hola: {(name:string):void};
+}
+
+const myObject: Object = {
+    title:"Alexis",
+    age:29,
+    voiture:"Tesla",
+    isMajeur:true,
+    
+}
+
+// console.log(myObject);
+
+// Les Classes
+
+class Car{
+    brand:string;
+    model:string;
+    price:number;
+
+    constructor(brand:string, model:string, price:number){
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+
+
+}
+
+const voiture = new Car("Mercedes", "C63-AMG", 11000);
+
+const voiture1 = new Car("Clio 5", "Renault", 21999);
+
+console.log(voiture1);
+
+
+// console.log(`La ${voiture.brand} : ${voiture.model} coûte un prix de ${voiture.price} Euro `);
+

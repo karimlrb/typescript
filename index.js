@@ -70,7 +70,7 @@ var user3 = {
 var user4 = {};
 user4.name = "Jean";
 var sayHello = function (name, age) {
-    console.log(" Hello " + name + ", tu as " + age + " ans");
+    // console.log(` Hello ${name}, tu as ${age} ans`);
 };
 var bestFriend = function (name) { return name; };
 // La ligne du dessus correspond à ça
@@ -78,4 +78,26 @@ var bestFriend = function (name) { return name; };
 //     return name
 // }
 sayHello('Yves', 29);
-console.log("L'ami de Jean s'apelle " + bestFriend("Luc"));
+var days = [1, 2, 3, 4, 5];
+// console.log(days);
+days.push(7);
+var myObject = {
+    title: "Alexis",
+    age: 29,
+    voiture: "Tesla",
+    isMajeur: true,
+};
+// console.log(myObject);
+// Les Classes
+var Car = /** @class */ (function () {
+    function Car(brand, model, price) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+    return Car;
+}());
+var voiture = new Car("Mercedes", "C63-AMG", 11000);
+var voiture1 = new Car("Clio 5", "Renault", 21999);
+console.log(voiture1);
+// console.log(`La ${voiture.brand} : ${voiture.model} coûte un prix de ${voiture.price} Euro `);
