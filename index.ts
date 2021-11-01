@@ -22,3 +22,35 @@ tableau1.push("tigre");
 console.log(tableau2);
 console.log(tableau1);
 
+// Objets
+
+interface Player{
+    id: number,
+    name: string,
+    jersey?: number
+}
+
+const zidane:Player = {
+    id: 0,
+    name: "Zidane",
+    jersey: 10
+};
+
+console.log(zidane);
+
+// Les classes
+
+class Singer {
+    id:number;
+    name: string;
+    alive?: boolean;
+
+    constructor(id:number, name:string, alive?:boolean) {
+        this.id =id;
+        this.name = name;
+        this.alive = alive;
+    }
+}
+
+const drake = new Singer(0,"Obraham");
+console.log(drake);

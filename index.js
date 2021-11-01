@@ -14,3 +14,20 @@ tableau2.push(false, 1, 2, 3);
 tableau1.push("tigre");
 console.log(tableau2);
 console.log(tableau1);
+var zidane = {
+    id: 0,
+    name: "Zidane",
+    jersey: 10
+};
+console.log(zidane);
+// Les classes
+var Singer = /** @class */ (function () {
+    function Singer(id, name, alive) {
+        this.id = id;
+        this.name = name;
+        this.alive = alive;
+    }
+    return Singer;
+}());
+var drake = new Singer(0, "Obraham");
+console.log(drake);
