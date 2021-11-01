@@ -177,25 +177,90 @@ const myObject: Object = {
 // Les Classes
 
 class Car{
-    brand:string;
-    model:string;
-    price:number;
+    public brand:string;
+    public model:string;
+    public price:number;
+    private _password:string;
 
-    constructor(brand:string, model:string, price:number){
+    constructor(brand:string, model:string, price:number, _password:string){
         this.brand = brand;
         this.model = model;
         this.price = price;
+        this._password = _password;
     }
 
+    // displayInfo() {
+    //     let keys = Object.keys(this);
+    //     for(let value of keys) console.log(this[value]);
+    // }
+
+    get password():string {
+        return this._password;
+    }
+
+    set password(newPassword:string) {
+         this._password= newPassword;
+    }
 
 }
 
-const voiture = new Car("Mercedes", "C63-AMG", 11000);
+const voiture = new Car("Mercedes", "C63-AMG", 11000, "test");
 
-const voiture1 = new Car("Clio 5", "Renault", 21999);
+// console.log(voiture.password);
 
-console.log(voiture1);
+voiture.password = "2021";
 
+// console.log(voiture.password);
+
+// console.log(voiture1);
 
 // console.log(`La ${voiture.brand} : ${voiture.model} coûte un prix de ${voiture.price} Euro `);
 
+class UserProfile {
+
+    sayBonjour() {
+        console.log("Bonjour");     
+    }
+
+    static sayHolla(){
+        console.log("Holla");
+    }
+}
+
+const user5 = new UserProfile();
+
+// user5.sayBonjour();
+// UserProfile.sayHolla();
+
+
+
+// Pour acceder à une fonction dans une classe je suis obligé de creer une instance(un objet)
+// Puis je passe par cet objet pour appeler la fonction -> objet.maFonction()
+// Si la fonction est static je peux passer directement par la fonction sans creer d'instance
+// -> Class.maFonction();
+
+// private vs protected -------------------------------------------------
+//  A revoir, surtout la notion de super et la declaration pleine ou vide
+
+class UprofileUser {
+
+    constructor(public name:string,public age:number, protected _firstName:string){};
+
+    // get firstName(){
+    //     return this._firstName;
+    // }
+};
+
+class AdvanceUprofileUser extends UprofileUser {
+
+    constructor( name:string, age:number , _firstName:string,public hobbies:string[],public color:string){
+       super(name,age,_firstName);
+    }
+     get firstName(){
+        return this._firstName;
+    }
+}
+
+const user6 = new AdvanceUprofileUser("karim", 29, "newPass", ["Lire", "Foot"],"crimson");
+
+console.log(user6.firstName);

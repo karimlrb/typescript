@@ -1,4 +1,19 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // variables
 var num1 = 24;
 var num2;
@@ -90,14 +105,80 @@ var myObject = {
 // console.log(myObject);
 // Les Classes
 var Car = /** @class */ (function () {
-    function Car(brand, model, price) {
+    function Car(brand, model, price, _password) {
         this.brand = brand;
         this.model = model;
         this.price = price;
+        this._password = _password;
     }
+    Object.defineProperty(Car.prototype, "password", {
+        // displayInfo() {
+        //     let keys = Object.keys(this);
+        //     for(let value of keys) console.log(this[value]);
+        // }
+        get: function () {
+            return this._password;
+        },
+        set: function (newPassword) {
+            this._password = newPassword;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Car;
 }());
-var voiture = new Car("Mercedes", "C63-AMG", 11000);
-var voiture1 = new Car("Clio 5", "Renault", 21999);
-console.log(voiture1);
+var voiture = new Car("Mercedes", "C63-AMG", 11000, "test");
+// console.log(voiture.password);
+voiture.password = "2021";
+// console.log(voiture.password);
+// console.log(voiture1);
 // console.log(`La ${voiture.brand} : ${voiture.model} coûte un prix de ${voiture.price} Euro `);
+var UserProfile = /** @class */ (function () {
+    function UserProfile() {
+    }
+    UserProfile.prototype.sayBonjour = function () {
+        console.log("Bonjour");
+    };
+    UserProfile.sayHolla = function () {
+        console.log("Holla");
+    };
+    return UserProfile;
+}());
+var user5 = new UserProfile();
+// user5.sayBonjour();
+// UserProfile.sayHolla();
+// Pour acceder à une fonction dans une classe je suis obligé de creer une instance(un objet)
+// Puis je passe par cet objet pour appeler la fonction -> objet.maFonction()
+// Si la fonction est static je peux passer directement par la fonction sans creer d'instance
+// -> Class.maFonction();
+// private vs protected -------------------------------------------------
+//  A revoir, surtout la notion de super et la declaration pleine ou vide
+var UprofileUser = /** @class */ (function () {
+    function UprofileUser(name, age, _firstName) {
+        this.name = name;
+        this.age = age;
+        this._firstName = _firstName;
+    }
+    ;
+    return UprofileUser;
+}());
+;
+var AdvanceUprofileUser = /** @class */ (function (_super) {
+    __extends(AdvanceUprofileUser, _super);
+    function AdvanceUprofileUser(name, age, _firstName, hobbies, color) {
+        var _this = _super.call(this, name, age, _firstName) || this;
+        _this.hobbies = hobbies;
+        _this.color = color;
+        return _this;
+    }
+    Object.defineProperty(AdvanceUprofileUser.prototype, "firstName", {
+        get: function () {
+            return this._firstName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return AdvanceUprofileUser;
+}(UprofileUser));
+var user6 = new AdvanceUprofileUser("karim", 29, "newPass", ["Lire", "Foot"], "crimson");
+console.log(user6.firstName);
