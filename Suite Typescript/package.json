@@ -1,0 +1,15 @@
+{
+  "name": "suite-typescript",
+  "version": "1.0.0",
+  "main": "./dist/main.js",
+  "scripts": {
+    "start": "node ./dist/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "systemjs": "^0.21.5"
+  }
+}

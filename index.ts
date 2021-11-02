@@ -216,18 +216,18 @@ voiture.password = "2021";
 
 // console.log(`La ${voiture.brand} : ${voiture.model} coûte un prix de ${voiture.price} Euro `);
 
-class UserProfile {
+// class UserProfile {
 
-    sayBonjour() {
-        console.log("Bonjour");     
-    }
+//     sayBonjour() {
+//         console.log("Bonjour");     
+//     }
 
-    static sayHolla(){
-        console.log("Holla");
-    }
-}
+//     static sayHolla(){
+//         console.log("Holla");
+//     }
+// }
 
-const user5 = new UserProfile();
+// const user5 = new UserProfile();
 
 // user5.sayBonjour();
 // UserProfile.sayHolla();
@@ -242,25 +242,73 @@ const user5 = new UserProfile();
 // private vs protected -------------------------------------------------
 //  A revoir, surtout la notion de super et la declaration pleine ou vide
 
-class UprofileUser {
+// class UprofileUser {
 
-    constructor(public name:string,public age:number, protected _firstName:string){};
+//     constructor(public name:string,public age:number, protected _firstName:string){};
 
     // get firstName(){
     //     return this._firstName;
     // }
-};
+// };
 
-class AdvanceUprofileUser extends UprofileUser {
+// class AdvanceUprofileUser extends UprofileUser {
 
-    constructor( name:string, age:number , _firstName:string,public hobbies:string[],public color:string){
-       super(name,age,_firstName);
-    }
-     get firstName(){
-        return this._firstName;
+//     constructor( name:string, age:number , _firstName:string,public hobbies:string[],public color:string){
+//        super(name,age,_firstName);
+//     }
+//      get firstName(){
+//         return this._firstName;
+//     }
+// }
+
+// const user6 = new AdvanceUprofileUser("karim", 29, "newPass", ["Lire", "Foot"],"crimson");
+
+// console.log(user6.firstName);
+
+// Nouvelle facon d'ecire les classes
+// Grace au mot public dans les constructors on peut ->
+// Supprimer les déclas de propriétées dans la classe
+// Mais aussi le this dans le constructor 
+
+// class UserProfile{
+//     // public name:string;
+//     // public age:number;
+//     constructor(public name:string, public age:number){
+//     }
+// }
+
+// class AdvancedUserProfile extends UserProfile {
+//     // hobbies:string[];
+//     // color:string;
+
+//     constructor(name:string,age:number,public hobbies:string[],public color:string){
+//         super(name,age)
+//         // this.hobbies = hobbies;
+//         // this.color = color;
+//     }
+// }
+
+// const user6 = new AdvancedUserProfile("Kiko", 30, ["montres", "pêche"],"blue");
+
+// console.log(user6.name, user6.hobbies);
+
+// Remplacement de la classe parent par une interface
+
+interface UserProfile{
+     name:string;
+     age:number;
+}
+
+class AdvancedUserProfile implements UserProfile {
+    
+    constructor(public name:string,public age:number,public color:string){
+         
     }
 }
 
-const user6 = new AdvanceUprofileUser("karim", 29, "newPass", ["Lire", "Foot"],"crimson");
+const user6 = new AdvancedUserProfile("john", 12,"red");
 
-console.log(user6.firstName);
+console.log(user6.name, user6.age, user6.color );
+
+// NodeJS--------------------------------------------
+
